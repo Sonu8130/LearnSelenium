@@ -11,6 +11,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import SD11.NewRes.PageObjects.landingPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class standAloneTest {
@@ -23,12 +25,13 @@ public class standAloneTest {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.get("https://rahulshettyacademy.com/client");
 		driver.manage().window().maximize();
+		landingPage langingPage = new landingPage(driver);
+		
 		driver.findElement(By.cssSelector("#userEmail")).sendKeys("mnk@maildrop.cc");
 		driver.findElement(By.cssSelector("#userPassword")).sendKeys("Sonu@098");
 		driver.findElement(By.cssSelector("#login")).click();
 
 		String productName = "ZARA COAT 3";
-
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mb-3"))); // Implicit wait
 
@@ -54,7 +57,6 @@ public class standAloneTest {
 		for (WebElement option : Country) {
 			option.getText().equalsIgnoreCase("India");
 			option.click();
-
 		}
 
 		// To perform scroll
@@ -65,5 +67,7 @@ public class standAloneTest {
 		wait.until(ExpectedConditions.visibilityOf(submit));
 		submit.click();
 
+		String conf = driver.findElement(By.cssSelector(".hero-primary")).getText();
+		Assert.assertTrue(conf.equalsIgnoreCase("THANKYOU FOR THE ORDER."));
 	}
 }
