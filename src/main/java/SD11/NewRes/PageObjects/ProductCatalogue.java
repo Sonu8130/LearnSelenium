@@ -46,7 +46,6 @@ public class ProductCatalogue extends abstractComponent {
 		prod.findElement(By.cssSelector(".card-body button:last-of-type")).click();
 		waitForElementToAppear(toastmessage);
 		waitForElementToDisappear(spinner);
-
 	}
 
 }

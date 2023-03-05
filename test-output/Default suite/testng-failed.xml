@@ -7,7 +7,7 @@
         <methods>
           <include name="tearDown"/>
           <include name="launchApplication"/>
-          <include name="submitOrderTest"/>
+          <include name="submitOrderTest" invocation-numbers="0"/>
         </methods>
       </class> <!-- SD11.NewRes.standAloneTest -->
     </classes>

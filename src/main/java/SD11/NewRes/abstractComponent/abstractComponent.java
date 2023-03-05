@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import SD11.NewRes.PageObjects.CartPage;
+import SD11.NewRes.PageObjects.OrderPage;
 
 public class abstractComponent {
 
@@ -23,12 +24,15 @@ public class abstractComponent {
 
 	}
 
+	@FindBy(xpath = "//button[@routerlink='/dashboard/myorders']")
+	WebElement orderHeader;
+
 	@FindBy(xpath = "//button[@routerlink='/dashboard/cart']")
 	WebElement cartHeader;
 
-	public void waitForElementToAppear(By findBy) {
+	public void waitForElementToAppear(By webele) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(findBy));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(webele));
 
 	}
 
@@ -42,6 +46,12 @@ public class abstractComponent {
 		cartHeader.click();
 		CartPage cartPage = new CartPage(driver);
 		return cartPage;
+	}
+
+	public OrderPage goToOrderPage() {
+		orderHeader.click();
+		OrderPage orderPage = new OrderPage(driver);
+		return orderPage;
 	}
 
 	public void scrollPage() {
